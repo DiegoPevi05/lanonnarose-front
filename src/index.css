@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face{
+  font-family:'BerkshireSwash-Regular';
+  src:url('./assets/fonts/BerkshireSwash-Regular.ttf') format('truetype');
+}
+
+@font-face{
+  font-family:'Arcane Nine';
+  src:url('./assets/fonts/Arcane Nine.otf') format('opentype');
+}
+
+@layer base {
+  html {
+    @apply font-body;
+    @apply bg-secondary;
+    @apply text-tertiary;
+    scroll-behavior: smooth;
+  }
+}
