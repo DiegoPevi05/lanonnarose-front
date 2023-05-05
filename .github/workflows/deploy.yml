@@ -1,0 +1,22 @@
+name: Deploy to SSH server
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Install dependencies
+      run: npm install
+    - name: Build
+      run: npm run build
+    - name: Set up SSH key
+      uses: webfactory/ssh-agent@v0.4.1
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+    - name: Deploy
+      run: |
+        scp -r dist/* u996714911@145.14.151.58:/domains/lanonnarose.com/public_html/
