@@ -12,7 +12,13 @@ jobs:
     - name: Install dependencies
       run: npm install
     - name: Build
-      run: npm run build
+      env:
+        SLACK_MESSAGE: "Built project :white_check_mark:"
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      run: |
+        echo "${SLACK_MESSAGE}"
+        npm run build
+        curl -X POST -H 'Content-type: application/json' --data '{"text":"'"${SLACK_MESSAGE}"'"}' ${{ secrets.SLACK_WEBHOOK_URL }}
     - name: Set up SSH key
       uses: webfactory/ssh-agent@v0.7.0
       with:
@@ -22,15 +28,3 @@ jobs:
     - name: Deploy
       run: |
         scp -P 65002 -r dist/* u996714911@145.14.151.58:/home/u996714911/domains/lanonnarose.com/public_html/
-  slackNotification:
-    name: Slack Notification
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Slack Notification
-      uses: rtCamp/action-slack-notify@v2
-      env:
-        SLACK_TITLE: 'Deploy' 
-        SLACK_COLOR: ${{ job.status }}
-        SLACK_MESSAGE: 'Build and Deploy FrontEnd Successfully :rocket:'
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
