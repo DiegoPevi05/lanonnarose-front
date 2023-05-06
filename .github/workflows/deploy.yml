@@ -10,14 +10,19 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
     - name: Install dependencies
-      run: npm install
-    - name: Build
       env:
-        SLACK_MESSAGE: "Built project :white_check_mark:"
+        SLACK_MESSAGE: "Installing Dependencies :open_book:"
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       run: |
         echo "${SLACK_MESSAGE}"
-        echo "${SLACK_WEBHOOK_URL}"
+        npm install
+        curl -X POST -H 'Content-type: application/json' --data '{"text":"'"${SLACK_MESSAGE}"'"}' ${{ secrets.SLACK_WEBHOOK_URL }}
+    - name: Build
+      env:
+        SLACK_MESSAGE: "Building React App Dist Folder :hammer:"
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      run: |
+        echo "${SLACK_MESSAGE}"
         npm run build
         curl -X POST -H 'Content-type: application/json' --data '{"text":"'"${SLACK_MESSAGE}"'"}' ${{ secrets.SLACK_WEBHOOK_URL }}
     - name: Set up SSH key
@@ -25,7 +30,18 @@ jobs:
       with:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
     - name: Add host key to known host
-      run: ssh-keyscan -p 65002 145.14.151.58 >> ~/.ssh/known_hosts
-    - name: Deploy
+      env:
+        SLACK_MESSAGE: "Set Connection and Enable it to SSH SERVER :ballot_box_with_check:"
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       run: |
+        echo "${SLACK_MESSAGE}"
+        ssh-keyscan -p 65002 145.14.151.58 >> ~/.ssh/known_hosts
+        curl -X POST -H 'Content-type: application/json' --data '{"text":"'"${SLACK_MESSAGE}"'"}' ${{ secrets.SLACK_WEBHOOK_URL }}
+    - name: Deploy
+      env:
+        SLACK_MESSAGE: "App Deployed Successfully :white_check_mark:"
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      run: |
+        echo "${SLACK_MESSAGE}"
         scp -P 65002 -r dist/* u996714911@145.14.151.58:/home/u996714911/domains/lanonnarose.com/public_html/
+        curl -X POST -H 'Content-type: application/json' --data '{"text":"'"${SLACK_MESSAGE}"'"}' ${{ secrets.SLACK_WEBHOOK_URL }}
