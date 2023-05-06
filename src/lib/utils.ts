@@ -1,6 +1,5 @@
 import {ClassValue,clsx} from 'clsx'
 import { twMerge } from 'tailwind-merge'
-import {BACK_URL} from '../constants'
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -42,20 +41,20 @@ const mapBlogs  = (blogs:any) => {
     }
 
     if(blog.image1 !== "N/A"){
-      blogItemEs.images.push(BACK_URL+blog.image1)
-      blogItemEn.images.push(BACK_URL+blog.image1)
+      blogItemEs.images.push(import.meta.env.VITE_BACKEND_URL_PUBLIC+blog.image1)
+      blogItemEn.images.push(import.meta.env.VITE_BACKEND_URL_PUBLIC+blog.image1)
     }
     if(blog.image2 !== "N/A"){
-      blogItemEs.images.push(BACK_URL+blog.image2)
-      blogItemEn.images.push(BACK_URL+blog.image2)
+      blogItemEs.images.push(import.meta.env.VITE_BACKEND_URL_PUBLIC+blog.image2)
+      blogItemEn.images.push(import.meta.env.VITE_BACKEND_URL_PUBLIC+blog.image2)
     }
     if(blog.image3 !== "N/A"){
-      blogItemEs.images.push(BACK_URL+blog.image3)
-      blogItemEn.images.push(BACK_URL+blog.image3)
+      blogItemEs.images.push(import.meta.env.VITE_BACKEND_URL_PUBLIC+blog.image3)
+      blogItemEn.images.push(import.meta.env.VITE_BACKEND_URL_PUBLIC+blog.image3)
     }
     if(blog.image4 !== "N/A"){
-      blogItemEs.images.push(BACK_URL+blog.image4)
-      blogItemEn.images.push(BACK_URL+blog.image4)
+      blogItemEs.images.push(import.meta.env.VITE_BACKEND_URL_PUBLIC+blog.image4)
+      blogItemEn.images.push(import.meta.env.VITE_BACKEND_URL_PUBLIC+blog.image4)
     }
 
     blogsSpanish.push(blogItemEs);
@@ -83,7 +82,7 @@ const mapProducts = (products:any) => {
         title: product.title_es,
         description: product.description_es,
         shortDescription:product.shortDescription_es,
-        image: BACK_URL+product.imageUrl,
+        image: import.meta.env.VITE_BACKEND_URL_PUBLIC+product.imageUrl,
         isImportant: product.isImportant === "1" ? true : false
       });
 
@@ -95,7 +94,7 @@ const mapProducts = (products:any) => {
           title: product.title_es,
           description: product.description_es,
           shortDescription:product.shortDescription_es,
-          image: BACK_URL+product.imageUrl,
+          image: import.meta.env.VITE_BACKEND_URL_PUBLIC+product.imageUrl,
           isImportant: product.isImportant === "1" ? true : false
         }]
       })
@@ -108,7 +107,7 @@ const mapProducts = (products:any) => {
         title: product.title_en,
         description: product.description_en,
         shortDescription:product.shortDescription_en,
-        image: BACK_URL+product.imageUrl,
+        image: import.meta.env.VITE_BACKEND_URL_PUBLIC+product.imageUrl,
         isImportant: product.isImportant === "1" ? true : false
       });
 
@@ -120,7 +119,7 @@ const mapProducts = (products:any) => {
           title: product.title_en,
           description: product.description_en,
           shortDescription:product.shortDescription_en,
-          image: BACK_URL+product.imageUrl,
+          image: import.meta.env.VITE_BACKEND_URL_PUBLIC+product.imageUrl,
           isImportant: product.isImportant === "1" ? true : false
         }]
       })

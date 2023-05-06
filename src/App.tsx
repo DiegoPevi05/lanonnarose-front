@@ -15,7 +15,7 @@ function App() {
   //axios to call api and get data
   const getDataFromServer = async () => {
     try {
-      const response = await axios.get('https://www.lanonnarose.com/server/api/content-web/all');
+      const response = await axios.get(import.meta.env.VITE_BACKEND_URL+'/api/content-web/all');
       await setWebData(mapInputData(response.data));
     }catch (err) {
       toast.error("Ha habido un error trayendo la información del servidor");

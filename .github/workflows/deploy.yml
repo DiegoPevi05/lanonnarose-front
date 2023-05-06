@@ -7,6 +7,13 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+    - name: Initialize Deploy
+      env:
+        SLACK_MESSAGE: "Initialize deploy of La Nonna Rose to Hostinger Server :technologist:"
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      run: |
+        echo "${SLACK_MESSAGE}"
+        curl -X POST -H 'Content-type: application/json' --data '{"text":"'"${SLACK_MESSAGE}"'"}' ${{ secrets.SLACK_WEBHOOK_URL }}
     - name: Checkout code
       uses: actions/checkout@v3
     - name: Install dependencies

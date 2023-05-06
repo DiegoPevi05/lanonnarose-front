@@ -3,4 +3,3 @@ export const LANGUAGES = [
     { label: 'English', code: 'en' }
 ]
 
-export const BACK_URL:string = "https://www.lanonnarose.com/server/public";
