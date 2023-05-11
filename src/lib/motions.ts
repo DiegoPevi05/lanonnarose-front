@@ -71,7 +71,7 @@ export const slideIn = (direction:string, type:string, delay:number, duration:nu
         duration: duration,
         ease: "easeOut",
       },
-    },
+    }
   };
 };
 
