@@ -15,6 +15,7 @@ export function mapInputData(data: any) {
 }
 
 const mapBlogs  = (blogs:any) => {
+  console.log(blogs)
   var blogsSpanish:any[] = [];
   var blogsEnglish:any[] = [];
   blogs.map((blog:any)=>{
@@ -25,8 +26,8 @@ const mapBlogs  = (blogs:any) => {
       subTitle: blog.subTitle_es,
       description: blog.description_es,
       images: [],
-      isImportant: blog.isImportant === "1" ? true : false,
-      BullletPoins: JSON.parse(blog.bulletpoints_es),
+      isImportant: blog.isImportant === 1 ? true : false,
+      BullletPoins: blog.bulletpoints_es,
       date: blog.created_at.split("T")[0]
     }
     var blogItemEn:any = {
@@ -35,24 +36,24 @@ const mapBlogs  = (blogs:any) => {
       subTitle: blog.subTitle_en,
       description: blog.description_en,
       images : [],
-      isImportant: blog.isImportant === "1" ? true : false,
-      BullletPoins: JSON.parse(blog.bulletpoints_en),
+      isImportant: blog.isImportant === 1 ? true : false,
+      BullletPoins: blog.bulletpoints_en,
       date: blog.created_at.split("T")[0]
     }
 
-    if(blog.image1 !== "N/A"){
+    if(blog.image1 !== null){
       blogItemEs.images.push(import.meta.env.VITE_BACKEND_URL_PUBLIC+blog.image1)
       blogItemEn.images.push(import.meta.env.VITE_BACKEND_URL_PUBLIC+blog.image1)
     }
-    if(blog.image2 !== "N/A"){
+    if(blog.image2 !== null){
       blogItemEs.images.push(import.meta.env.VITE_BACKEND_URL_PUBLIC+blog.image2)
       blogItemEn.images.push(import.meta.env.VITE_BACKEND_URL_PUBLIC+blog.image2)
     }
-    if(blog.image3 !== "N/A"){
+    if(blog.image3 !== null){
       blogItemEs.images.push(import.meta.env.VITE_BACKEND_URL_PUBLIC+blog.image3)
       blogItemEn.images.push(import.meta.env.VITE_BACKEND_URL_PUBLIC+blog.image3)
     }
-    if(blog.image4 !== "N/A"){
+    if(blog.image4 !== null){
       blogItemEs.images.push(import.meta.env.VITE_BACKEND_URL_PUBLIC+blog.image4)
       blogItemEn.images.push(import.meta.env.VITE_BACKEND_URL_PUBLIC+blog.image4)
     }
@@ -83,7 +84,7 @@ const mapProducts = (products:any) => {
         description: product.description_es,
         shortDescription:product.shortDescription_es,
         image: import.meta.env.VITE_BACKEND_URL_PUBLIC+product.imageUrl,
-        isImportant: product.isImportant === "1" ? true : false
+        isImportant: product.isImportant === 1 ? true : false
       });
 
     }else{
@@ -95,7 +96,7 @@ const mapProducts = (products:any) => {
           description: product.description_es,
           shortDescription:product.shortDescription_es,
           image: import.meta.env.VITE_BACKEND_URL_PUBLIC+product.imageUrl,
-          isImportant: product.isImportant === "1" ? true : false
+          isImportant: product.isImportant === 1 ? true : false
         }]
       })
       SectionsEs.push(product.section_es);
@@ -108,7 +109,7 @@ const mapProducts = (products:any) => {
         description: product.description_en,
         shortDescription:product.shortDescription_en,
         image: import.meta.env.VITE_BACKEND_URL_PUBLIC+product.imageUrl,
-        isImportant: product.isImportant === "1" ? true : false
+        isImportant: product.isImportant === 1 ? true : false
       });
 
     }else{
@@ -120,7 +121,7 @@ const mapProducts = (products:any) => {
           description: product.description_en,
           shortDescription:product.shortDescription_en,
           image: import.meta.env.VITE_BACKEND_URL_PUBLIC+product.imageUrl,
-          isImportant: product.isImportant === "1" ? true : false
+          isImportant: product.isImportant === 1 ? true : false
         }]
       })
       SectionsEn.push(product.section_en);

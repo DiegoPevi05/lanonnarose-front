@@ -40,6 +40,7 @@ const BlogComponent = (props:BlogCompProps) => {
 
   const [BlogData,setBlogData] = useState<Blog[]>([]);
 
+
   useEffect(() => {
     if(blogs != undefined && blogs.length > 0){
       var LanguageBlog = blogs.find(item => item.language === i18n.language);

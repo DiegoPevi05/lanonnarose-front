@@ -45,13 +45,11 @@ const Contact:FC = () => {
     try{
       const config = {
         headers: {
-          Authorization: import.meta.env.VITE_FORM_UATH_TOKEN
+          "accept-language": i18n.language,
+          "x-api-key": import.meta.env.VITE_API_KEY,
         },
-        params:{
-          language:i18n.language
-        }
       }
-      await axios.post(import.meta.env.VITE_BACKEND_URL+"/api/send-email",form,config);
+      await axios.post(import.meta.env.VITE_BACKEND_URL+"/api/send-email/lanonnarose",form,config);
       setForm(emptyData);
       toast.success("Mensaje enviado con éxito");
     } catch(error){
